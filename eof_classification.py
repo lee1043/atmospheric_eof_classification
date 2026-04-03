@@ -13,6 +13,7 @@
 # to do so.
 # This program is Open-Source under the BSD-3 License. See LICENSE file.
 # LANL O Number: O5081
+# Authors: Martin Velez Pardo (LANL, EES-14), Alexandra Jonko (LANL, EES-17)
 """
 Combined Arctic and North-Atlantic EOF classification runner (3 methods) with consensus-based summary.
 
