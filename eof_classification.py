@@ -254,7 +254,11 @@ def _load_model_triplets(eof_globs=None):
         eof_globs = EOF_GLOBS
     file_lists = {n: sorted(glob(eof_globs[n])) for n in EOF_NUMS}
     n_files = len(file_lists[2])
-    assert n_files > 0, "No EOF2 model files found."
+    assert n_files > 0, (
+        "No EOF2 model files found. Either set MODEL_EOF_DIR/EOF_GLOBS in the "
+        "CONFIG section, or pass eof_globs={2: ..., 3: ..., 4: ...} to "
+        "eof_classification()."
+    )    
     for n in EOF_NUMS:
         assert len(file_lists[n]) == n_files, f"File count mismatch for EOF{n}."
     triplets = []
