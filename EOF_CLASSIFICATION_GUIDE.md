@@ -85,7 +85,12 @@ The tool requires three types of input, all in netCDF format:
 
 1. **Model EOF files** — one file per EOF mode (2, 3, 4) per model,
    each containing a 2-D (lat × lon) spatial pattern.  Files are
-   discovered via glob patterns.
+   discovered via glob patterns. **Note**: By default, 
+   'eof_classification()" runs on a single CMIP6 model included in 
+   'data/example_eofs' so you can try the tool out of the box. This
+   example data is for **demonstration only**. To classify your own data,
+   change 'MODEL_EOF_DIR' in the CONFIG section or pass 'eofs_globs'
+   to 'eof_classification()' to point at your own files.
 
 2. **Control patterns** — observed EA and SCA reference patterns from
    reanalysis.  The default controls are from 20CR-V2, which among the
@@ -96,6 +101,12 @@ The tool requires three types of input, all in netCDF format:
 3. **K-means centers file** (JSON) — pre-computed cluster centers.
    Included in the `data/` directory.  See
    [K-means Retraining](#k-means-retraining) if you need to regenerate.
+
+**Note**: By default, 'eof_classification()" runs on a single CMIP6 model
+included in 'data/example_eofs' so you can try the tool out of the box. This
+example data is for **demonstration only**. To classify your own data, 
+change 'MODEL_EOF_DIR' in the CONFIG section or pass 'eofs_globs' 
+to 'eof_classification()' to point at your own files.
 
 ## Usage
 

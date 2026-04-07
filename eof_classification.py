@@ -72,7 +72,7 @@ EOF_NUMS = [2, 3, 4]  # which EOF modes to classify
 
 # -- EOF inputs to classify --
 # MODEL_EOF_DIR: directory containing model EOF netCDF files (one per model per mode)
-MODEL_EOF_DIR = ""  # Path to directory with EOF files
+MODEL_EOF_DIR = "data/example_eofs"  # Path to directory with EOF files
 # EOF_GLOBS: glob patterns to find EOF2, EOF3, EOF4 files; must match 1-to-1 across modes
 EOF_GLOBS = {
     n: os.path.join(MODEL_EOF_DIR, f"EOF{n}_psl_JFM_cmip6_*.nc") for n in EOF_NUMS
@@ -1091,6 +1091,13 @@ def eof_classification(
     )
     print(f"K-means: {kmeans_centers_file} ({kmeans_mode})")
     print("=" * 60 + "\n")
+
+    if eof_globs is None and MODEL_EOF_DIR == "data/example_eofs":
+        print("!" * 60)
+        print("WARNING: Running with EXAMPLE data (single CMIP6 model).")
+        print("Results are for demonstration only, not your own models.")
+        print("To use your own data, set MODEL_EOF_DIR or pass eof_globs=...")
+        print("!" * 60 + "\n")
 
     EA_ctrl = EA_SIGN * _read_da(ea_ctrl_file)
     SCA_ctrl = SCA_SIGN * _read_da(sca_ctrl_file)
