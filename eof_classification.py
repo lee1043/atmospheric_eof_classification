@@ -189,7 +189,8 @@ def _subset(da, lat_range=LAT_RANGE, lon_intervals=LON_INTERVALS):
 
 
 def _read_da(path, var=VAR_NAME):
-    with xr.open_dataset(path, use_cftime=True) as ds:
+    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
+    with xr.open_dataset(path, decode_times=time_coder) as ds:
         da = ds[var] if var in ds.data_vars else ds[list(ds.data_vars)[0]]
     if "mode" in da.dims:
         da = da.isel(mode=0)
